@@ -5,7 +5,8 @@ var BookmarksRender = React.createClass({
 
   getDefaultProps() {
     return {
-       month: 2
+       month: 2,
+       year: 2015
     };
   },
   renderLink(leafNode) {
@@ -13,11 +14,11 @@ var BookmarksRender = React.createClass({
     <span>  
       <a href={leafNode.url} target="_blank">{leafNode.name}</a>
        &nbsp;|&nbsp; 
-       {(leafNode.date_added?moment(leafNode.date_added).fromNow() : -1)}
+       {(leafNode.date_added? moment(leafNode.date_added).fromNow() : -1)}
     </span>
       );
   },
-  renderBookmarks(elRoot, month=0) {    
+  renderBookmarks(elRoot, year=0, month=0) {    
     if (elRoot.children) {
       return (
         <div>
@@ -31,13 +32,13 @@ var BookmarksRender = React.createClass({
                         return true;
                     } 
                     
-                    return c.date_added.getMonth() === month;
+                    return c.date_added.getFullYear() === year && c.date_added.getMonth() === month;
                   })            
                 .map(c => (<li key={c.id}>
                 {!c.children?
                   <span className="glyphicon glyphicon-file" aria-hidden="true"></span>
                 : null}   
-                {this.renderBookmarks(c, month)}  
+                {this.renderBookmarks(c, year, month)}  
                 </li>))
               }
           </ul>
@@ -49,7 +50,7 @@ var BookmarksRender = React.createClass({
     }
   },
   render() {    
-    return this.renderBookmarks(this.props.root, this.props.month);
+    return this.renderBookmarks(this.props.root, this.props.year, this.props.month);
   }
 });
 

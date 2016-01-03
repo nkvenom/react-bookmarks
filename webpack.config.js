@@ -17,10 +17,21 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
-    loaders: [{
+    loaders: [
+      {
       test: /\.jsx?$/,
-      loaders: ['react-hot', 'babel'],
-      include: path.join(__dirname, 'src')
-    }]
+      loader: 'react-hot',
+      include: path.join(__dirname, 'src'),
+    },      
+    {
+      test: /\.jsx?$/,
+      loader: 'babel',
+      include: path.join(__dirname, 'src'),
+      plugins: ['transform-runtime'],
+      query: {
+        presets: ['react', 'es2015', 'stage-0']
+      }
+    },
+    ]
   }
 };

@@ -1,7 +1,7 @@
 react-bookmarks
 =====================
 
-A little experiment to test React and ~~react-hot-loader~~ __react-transform-boilerplate__. Shows the google chrome bookmarks month by month, chrome internally stores the bookmarks in a json file at least until version 48.
+A little experiment to test __React__ and ~~react-hot-loader~~ __react-transform-boilerplate__. Shows the google Chrome bookmarks month by month. Google Chrome internally stores the bookmarks in a json file at least until version 48.
 
 ### Usage
 
